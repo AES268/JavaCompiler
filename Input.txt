@@ -1,1 +1,2 @@
 String Y equals ZeftGO
+integer x equals 7GO
