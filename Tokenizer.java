@@ -10,7 +10,7 @@ public class Tokenizer
     
     public static void main(String[]args)
     {
-        String filePath="src/Input.txt";
+        String filePath="Input.txt";
         String testt="";
         try{
             testt=new String(Files.readAllBytes(Paths.get(filePath)));
