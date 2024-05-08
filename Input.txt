@@ -1,1 +1,1 @@
-Print GO if GO
+integer x equals 5
