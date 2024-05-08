@@ -1,1 +1,7 @@
+<<<<<<< HEAD
 String Y equals ZeftGO
+=======
+String Y equals ZeftGO
+integer x equals 7GO
+print GO
+>>>>>>> e39e2f4adf12c3aca86153b860849ecc15839932
