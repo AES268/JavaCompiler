@@ -1,1 +1,1 @@
-Integer X equals 10GO
+String Y equals ZeftGO
