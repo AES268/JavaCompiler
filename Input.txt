@@ -1,1 +1,1 @@
-Integer X equals 10GO
+Integer X equals 10
