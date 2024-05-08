@@ -1,1 +1,1 @@
-Print GO if GO
+Integer X equals 5GO
