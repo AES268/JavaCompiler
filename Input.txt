@@ -1,3 +1,1 @@
-String Y equals ZeftGO
-integer x equals 7GO
-print GOCharacter prs equals YesGO
+Double B equals 12941285GO
