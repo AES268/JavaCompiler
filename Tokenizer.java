@@ -40,6 +40,20 @@ public class Tokenizer
     if((i%2==0&&(isNumeric(exp[i])||isValididentifier(exp[i])))||(i%2!=0&&isOperator(exp[i])))return false;
     return true;
     }
+    boolean isvalidcond(String[] GO)
+    {
+        int x=GO.length;
+        if (x==2)
+        {if(isValididentifier(GO[1])||isNumeric(GO[1]))return true;return false;}
+        else if(x==4)
+        {if(isValididentifier(GO[1])&&nextTokenType(GO[2])==TokenType.CONDITION&&(isValididentifier(GO[3])||isNumeric(GO[3])))return true;return false;}
+        else return false;
+    }
+    TokenType conditions(String ar)
+    {
+        if(ar.equals("And"))return TokenType.AND;else if (ar.equals("Or"))return TokenType.OR; else if (ar.equals("equals"))return TokenType.EQUALS;
+        else return TokenType.INVALID;
+    }
     boolean isvalidInt(String[]str)
     {
     if(nextTokenType(str[0])==TokenType.INTEGER&&isValididentifier(str[1])&&isOperator(str[2])&&mathematicalexpression(str))
@@ -83,6 +97,7 @@ public class Tokenizer
         else if(input.equals("If"))return TokenType.IF;
         else if(input.equals("Print")||input.equals("Print Line"))return TokenType.PRINT;  
         else if (isOperator(input))return TokenType.OPERATOR;
+        else if(input.equals("Or")||input.equals("And")||input.equals("Equals"))return TokenType.CONDITION;
         else return TokenType.INVALID;
     }
     public ArrayList<Token> tokenize(String input) throws IOException{
@@ -123,6 +138,10 @@ try {
                 {throw new Exception("ERROR! Declared token type should be CHARACTER");}
                 else if(nextTokenType(GO[0])==TokenType.INTEGER&&!isvalidInt(GO)){throw new Exception("ERROR! Declared Integer assignment invalid");}
                 else {result.add(new Token(token2, nextTokenType(token2)));}
+        }
+        else if(k2==LineType.CONDITION)
+        {
+            if(!isvalidcond(GO)) {throw new Exception("ERROR! INVALID CONDITION STATEMENT");}
         }
     }
 } catch (Exception e) {

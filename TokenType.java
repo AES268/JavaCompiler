@@ -17,6 +17,10 @@ public enum TokenType
     LONG,
     STRING,
     INVALID,
-    IF,
     PRINT,
+    IF,
+    CONDITION,
+    AND,
+    OR,
+    EQUALS,
 }
