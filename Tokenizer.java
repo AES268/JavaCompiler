@@ -51,7 +51,7 @@ public class Tokenizer
     }
     TokenType conditions(String ar)
     {
-        if(ar.equals("And"))return TokenType.AND;else if (ar.equals("Or"))return TokenType.OR; else if (ar.equals("equals"))return TokenType.EQUALS;
+        if(ar.equals("And"))return TokenType.AND;else if (ar.equals("Or"))return TokenType.OR; else if (ar.equals("Equals"))return TokenType.EQUALS;
         else return TokenType.INVALID;
     }
     boolean isvalidInt(String[]str)
@@ -70,7 +70,7 @@ public class Tokenizer
     }
     public boolean isOperator(String input)
     {
-        return (input.equals("equals")||input.equals('-')||input.equals('+')||input.equals('*')||input.equals('/')
+        return (input.equals("Equals")||input.equals('-')||input.equals('+')||input.equals('*')||input.equals('/')
                 ||input.equals("plus")||input.equals("minus")||input.equals("times")||input.equals('=')||input.equals("by"));
     }
     public boolean isValididentifier(String input)
@@ -98,6 +98,7 @@ public class Tokenizer
         else if(input.equals("Print")||input.equals("Print Line"))return TokenType.PRINT;  
         else if (isOperator(input))return TokenType.OPERATOR;
         else if(input.equals("Or")||input.equals("And")||input.equals("Equals"))return TokenType.CONDITION;
+        else if(isValididentifier(input))return TokenType.IDENTIFIER;
         else return TokenType.INVALID;
     }
     public ArrayList<Token> tokenize(String input) throws IOException{
@@ -139,10 +140,9 @@ try {
                 else if(nextTokenType(GO[0])==TokenType.INTEGER&&!isvalidInt(GO)){throw new Exception("ERROR! Declared Integer assignment invalid");}
                 else {result.add(new Token(token2, nextTokenType(token2)));}
         }
-        else if(k2==LineType.CONDITION)
-        {
-            if(!isvalidcond(GO)) {throw new Exception("ERROR! INVALID CONDITION STATEMENT");}
-        }
+        else if(k2==LineType.CONDITION)if(!isvalidcond(GO)) {throw new Exception("ERROR! INVALID CONDITION STATEMENT");}else {result.add(new Token(token2, nextTokenType(token2)));}
+        
+
     }
 } catch (Exception e) {
     e.printStackTrace();System.exit(1);
