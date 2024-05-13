@@ -28,16 +28,13 @@ public class Tokenizer
             System.out.println("ERROR");
         }
         }
-    public static boolean isNumeric(String str) {
-    for (char c : str.toCharArray()) {
-        if (!Character.isDigit(c)) {return false;}
-    }
-    return true;
+    public static boolean isNumeric(String str) {for (char c : str.toCharArray()) if (!Character.isDigit(c)) return false;return true;
     }
     boolean mathematicalexpression(String[] exp)
     {
     for(int i=3;i<exp.length;i++)
-    if((i%2==0&&(isNumeric(exp[i])||isValididentifier(exp[i])))||(i%2!=0&&isOperator(exp[i])))return false;
+    if((i%2==0&&(isNumeric(exp[i])||isValididentifier(exp[i])))||(i%2!=0&&isOperator(exp[i])))
+    return false;
     return true;
     }
     boolean isvalidcond(String[] GO)
@@ -101,6 +98,10 @@ public class Tokenizer
         else if(isValididentifier(input))return TokenType.IDENTIFIER;
         else return TokenType.INVALID;
     }
+    boolean isvalidprint(String[] str)
+    {
+        if (str.length>1)return true;return false;
+    }
     public ArrayList<Token> tokenize(String input) throws IOException{
     ArrayList<Token> result = new ArrayList<Token>();
     String[] tokens2=input.split("GO");
@@ -141,7 +142,8 @@ try {
                 else {result.add(new Token(token2, nextTokenType(token2)));}
         }
         else if(k2==LineType.CONDITION)if(!isvalidcond(GO)) {throw new Exception("ERROR! INVALID CONDITION STATEMENT");}else {result.add(new Token(token2, nextTokenType(token2)));}
-        
+        else if(k2==LineType.PRINT)if(!isvalidprint(GO))throw new Exception("ERROR! INVALID PRINT STATEMENT");else result.add(new Token(token2, nextTokenType(token2)));
+        else {throw new Exception("Wrong or Invalid line type.");}
 
     }
 } catch (Exception e) {
