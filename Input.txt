@@ -1,1 +1,3 @@
-integer x equals 5
+String Y equals ZeftGO
+integer x equals 7GO
+print GOCharacter prs equals YesGO
