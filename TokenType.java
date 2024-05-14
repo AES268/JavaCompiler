@@ -18,6 +18,7 @@ public enum TokenType
     STRING,
     INVALID,
     PRINT,
+    PRINTED,
     IF,
     CONDITION,
     AND,

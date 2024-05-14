@@ -13,5 +13,6 @@ public enum LineType
     CONDITION,
     ASSIGNMENT,
     PRINT,
+    DECLARATION,
     INVALID,
 }
