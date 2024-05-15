@@ -75,8 +75,8 @@ public class Tokenizer
     }
     public boolean isOperator(String input)
     {
-        return (input.equals("Equals")||input.equals('-')||input.equals('+')||input.equals('*')||input.equals('/')
-                ||input.equals("Plus")||input.equals("Minus")||input.equals("Times")||input.equals('=')||input.equals("By")||input.equals("Is")||input.equals("is"));
+        return (input.equals("Equals")||input.equals("-")||input.equals("+")||input.equals("*")||input.equals("/")
+                ||input.equals("Plus")||input.equals("Minus")||input.equals("Times")||input.equals("=")||input.equals("By")||input.equals("Is")||input.equals("is"));
     }
     public boolean isValididentifier(String input)
     {
@@ -86,6 +86,10 @@ public class Tokenizer
     {
         if(input.equals("If"))return true;return false;
     }
+    TokenType ConditionType(String tokenValue){
+    if(tokenValue.equals("Or")||tokenValue.equals("or"))return TokenType.OR;
+    else if(tokenValue.equals("And")||tokenValue.equals("and"))return TokenType.AND;
+    else return TokenType.EQUALS;}
     boolean isPrintStatement(String input)
     {
         if(input.equals("Print")||input.equals("Print Line"))return true;return false;
@@ -102,7 +106,7 @@ public class Tokenizer
         else if(input.equals("If"))return TokenType.IF;
         else if(input.equals("Print")||input.equals("Print Line"))return TokenType.PRINT;  
         else if (isOperator(input))return TokenType.OPERATOR;
-        else if(input.equals("Or")||input.equals("And")||input.equals("and")||input.equals("or")||isequal(input))return TokenType.CONDITION;
+        else if(input.equals("Or")||input.equals("And")||input.equals("and")||input.equals("or")||input.equals("Is equal to"))return TokenType.CONDITION;
         else if(!Character.isDigit(input.charAt(0)))return TokenType.IDENTIFIER;
         else return TokenType.INVALID;
     }
@@ -155,17 +159,20 @@ try {
                 if (nextTokenType(GO[0])==TokenType.CHAR&&!isvalidchar(GO))
                 {throw new Exception("ERROR! Declared token type should be CHARACTER");}
                 else if(nextTokenType(GO[0])==TokenType.CHAR&&isvalidchar(GO)&&GO.length>2)
-                {if(token2==GO[3])result.add(new Token(token2,TokenType.CHARACTER));else result.add(new Token(token2, nextTokenType(token2)));}
+                {if(token2==GO[3]){result.add(new Token(token2,TokenType.CHARACTER));result.add(new Token("GO", TokenType.GO));}else result.add(new Token(token2, nextTokenType(token2)));}
                 else if(nextTokenType(GO[0])==TokenType.INTEGER&&!isvalidInt(GO)){throw new Exception("ERROR! Declared Integer assignment invalid");}
                 else if(nextTokenType(GO[0])==TokenType.LONG&&!isvalidInt(GO)){throw new Exception("ERROR! Declared LONG assignment invalid");}
                 else if(nextTokenType(token2)==TokenType.INVALID)throw new Exception("ERROR! INVALID TOKEN DETECTED");
-                else {result.add(new Token(token2, nextTokenType(token2)));}
+                else {
+                    if(i==GO.length-1) {result.add(new Token(token2, nextTokenType(token2)));
+                        result.add(new Token("GO", TokenType.GO));}
+                    else result.add(new Token(token2, nextTokenType(token2)));}
         }
         else if(k2==LineType.DECLARATION)
         {
                 if(isDataType(nextTokenType(GO[0]))&&isValididentifier(GO[1]))result.add(new Token(token2, nextTokenType(token2)));
         }
-        else if(k2==LineType.CONDITION)if(!isvalidcond(GO)) {throw new Exception("ERROR! INVALID CONDITION STATEMENT");}else {result.add(new Token(token2, nextTokenType(token2)));}
+        else if(k2==LineType.CONDITION)if(!isvalidcond(GO)) {throw new Exception("ERROR! INVALID CONDITION STATEMENT");}else {if(i==0)result.add(new Token(token2, nextTokenType(token2)));else result.add(new Token(token2, ConditionType(token2)));}
         else if(k2==LineType.PRINT){if(!isvalidprint(GO))throw new Exception("ERROR! INVALID PRINT STATEMENT");
         else if(i!=0) result.add(new Token(token2, TokenType.PRINTED));
         else result.add(new Token(token2, nextTokenType(token2)));}

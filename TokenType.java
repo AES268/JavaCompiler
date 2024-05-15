@@ -8,6 +8,10 @@ public enum TokenType
     DATATYPE,
     NUMBER,
     OPERATOR,//+ - / *
+    ADD,
+    SUB,
+    TIMES,
+    BY,
     WHITESPACE,
     INTEGER,
     CHAR,
@@ -24,4 +28,5 @@ public enum TokenType
     AND,
     OR,
     EQUALS,
+    GO,
 }
