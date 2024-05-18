@@ -4,12 +4,19 @@ package token;
 
 public class Token
 {
-    public  String tokenValue;
-    public  TokenType tokenType;
-    public Token(String tokenValue,TokenType tokenType)
+     String tokenValue;
+     TokenType tokenType;
+     int line;
+    Token(String tokenValue,TokenType tokenType)
     {
         this.tokenValue=tokenValue;
         this.tokenType=tokenType;
+    }
+    Token(String tokenValue,TokenType tokenType,int line)
+    {
+        this.tokenValue=tokenValue;
+        this.tokenType=tokenType;
+        this.line=line;
     }
     public TokenType getType()
     {

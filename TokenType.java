@@ -28,5 +28,9 @@ public enum TokenType
     AND,
     OR,
     EQUALS,
+    EQUALSLESS,
+    EQUALSMORE,
+    LESS,
+    MORE,
     GO,
 }
