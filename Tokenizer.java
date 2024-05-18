@@ -29,7 +29,7 @@ public class Tokenizer {
         } catch (IOException e) {
             System.out.println("ERROR");
         }
-        //new Checker(listoftoken,listofVariables);
+        Checker Z=new Checker(listoftoken,listofVariables);
     }
 
     public static boolean isNumeric(String str) {
