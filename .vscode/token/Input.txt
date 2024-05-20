@@ -1,0 +1,3 @@
+Integer X Equals 5 GO
+Integer Y Equals 6 GO
+If X then Integer Y is 8 GO

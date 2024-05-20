@@ -8,6 +8,13 @@
             "type": "java",
             "name": "Tokenizer",
             "request": "launch",
+            "mainClass": "Tokenizer",
+            "projectName": "JavaCompiler_2ce0abb5"
+        },
+        {
+            "type": "java",
+            "name": "Tokenizer",
+            "request": "launch",
             "mainClass": "token.Tokenizer",
             "projectName": ""
         },
