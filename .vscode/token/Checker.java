@@ -48,7 +48,7 @@ public class Checker {
         Set<String> uniqueIdentifiers = new HashSet<>();
         List<Token> uniqueLineTokens = identifierTokens.stream().filter(token -> uniqueIdentifiers.add(token.getValue())).collect(Collectors.toList());
        // for (Token yes : uniqueLineTokens) {System.out.print(yes.getValue() + " " + yes.getType() + " " + yes.line+" ");}System.out.println("");
-       // for (Token no:Variables){System.out.print(no.getValue() + " " + no.getType() + " " + no.line+" ");}
+        // for (Token no:Variables){System.out.print(no.getValue() + " " + no.getType() + " " + no.line+" ");}
         for (Token token : uniqueLineTokens) {
             boolean found = Variables.stream().anyMatch(var -> var.getValue().equals(token.getValue()));
             if (!found) {throw new Exception("Used variable unassigned: " + token.getValue());}

@@ -10,6 +10,7 @@
  */
 public enum LineType
 {
+    ASSIGNMENT_NO_DECLARATION,
     CONDITION,
     ASSIGNMENT,
     PRINT,

@@ -15,6 +15,7 @@ public enum TokenType
     INTEGER,
     CHAR,
     CHARACTER,
+    EQUALSCHECK,
     FLOAT,
     DOUBLE,
     LONG,
